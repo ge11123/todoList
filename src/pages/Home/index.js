@@ -1,21 +1,28 @@
-import Edit from "./components/Edit";
-import Item from "./components/Item";
-import List from "./components/List";
-import "./index.css"
+import TodoEdit from "./components/TodoEdit";
+import TodoList from "./components/TodoList";
 import { useState } from "react";
+import "./index.css";
 
 const Home = () => {
-    // const [state, setState] = useState(initialValue);
+  const [todos, setTodos] = useState([]);
 
+  const handleAddTodo = (newTodo) => {
+    // prevTodos.add(newTodo)
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
+  };
 
-    // 使用hook 宣告狀態變數state, 更新狀態函數setState, 並宣告初始值100
-    const [data, setData] = useState([]);
+  const handleDeleteTodo = (id) => {
+    setTodos((prevTodos) => {
+      prevTodos.filter(item => item.id !== id)
+    });
+  }
 
-    return <div className="app">
-        <Edit add={setData} />
-        <List datas={data} />
-    </div>;
-}
-
+  return (
+    <div className="app">
+      <TodoEdit onAddTodo={handleAddTodo} />
+      <TodoList todos={todos} deleteData={handleDeleteTodo} />
+    </div>
+  );
+};
 
 export default Home;

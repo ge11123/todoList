@@ -1,7 +1,7 @@
-import Temp from "./components/temp"
+import Temp from "./components/temp";
 
-const T = ()=>{
-    return <Temp/>;
-}
+const T = () => {
+  return <Temp />;
+};
 
 export default T;
